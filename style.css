@@ -45,7 +45,8 @@ body {
     border-radius: 8px;
     border: 1px solid rgba(136, 131, 142, 0.898);
     background-color: white;
-    padding: 12px;  
+    padding: 12px;
+    margin-bottom: 16px;  
 
     .card_header {
         display: flex;
@@ -82,3 +83,10 @@ body {
     }
 }
 
+.modalAgregar {
+    display: flex;
+    padding: 8px;
+    flex-direction: column;
+    gap: 8px;
+    
+}

@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="header">
         <h1>Lista de Tareas</h1>
         <div>
-            <button class = "agregar">Agregar Tarea</button>
+            <button class="agregar" command="show-modal" commandfor="my-dialog">Agregar Tarea</button>
         </div>
     </div>
-    <div class = "lista_de_tareas">
-        <div class = "card">
-            <div class ="card_header">
-                <div class = "icono">🤑</div>
-                <div class = "titulo">Tarea 1</div>
-            </div>
-            <div class = "botones">
-                <button class= "hecho">Hecho</button>
-                <button class = "urgente">Urgente</button>
-                <button class = "eliminar">🗑️ Eliminar</button>
-            </div>
-        </div>
+    <div class="lista_de_tareas" id="listaTareas">
+        
     </div>
 
+    <dialog id="my-dialog">
+        <div class="modalAgregar">
+            <label for="tituloTarea">Titulo de la tarea: </label>
+            <input type="text" id="tituloTarea">
+            <label for="categoriaTarea">Categoria de la tarea: </label>
+            <select name="" id="categoriaTarea">
+                <option value="💼">💼 Trabajo</option>
+                <option value="📚">📚 Estudio</option>
+                <option value="🏠">🏠 Personal</option>
+                <option value="🚨">🚨 Urgente</option>
+                <option value="otra">Otra...</option>
+            </select>
+            <button id="agregarTarea" commandfor="my-dialog" command="close">Guardar</button>
+        </div>
+    </dialog>
     <script src="app.js"></script>
 </body>
+
 </html>
