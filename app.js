@@ -86,24 +86,66 @@ function mostrarTareas() {
     for (let i = 0; i < tareas.length; i++) {
         const tarea = tareas[i];
 
+        let claseTarea = "tarea";
+
+        if (tarea.hecha) {
+            claseTarea += " hecha";
+        }
+
+        if (tarea.urgente) {
+            claseTarea += " urgente";
+        }
+
         listaTareas.innerHTML += `
-      <div class="tarea">
+      <div class="${claseTarea}">
         <p>${tarea.categoria} ${tarea.texto}</p>
-        
-        <button onclick="marcarHecha(${tarea.id})">Hecha</button>
-        <button onclick="marcarUrgente(${tarea.id})">Urgente</button>
-        <button onclick="eliminarTarea(${tarea.id})">Eliminar</button>
+
+        <div class="botonesTarea">
+          <button onclick="marcarHecha(${tarea.id})">Hecha</button>
+          <button onclick="marcarUrgente(${tarea.id})">Urgente</button>
+          <button onclick="eliminarTarea(${tarea.id})">Eliminar</button>
+        </div>
       </div>
     `;
     }
 }
 
 function marcarHecha(id) {
+    for (let i = 0; i < tareas.length; i++) {
+        if (tareas[i].id === id) {
+            if (tareas[i].hecha === false) {
+                tareas[i].hecha = true;
+                completadas++;
+                console.log("Tarea marcada como hecha:", tareas[i]);
+            } else {
+                tareas[i].hecha = false;
+                completadas--;
+                console.log("Tarea desmarcada como hecha:", tareas[i]);
+            }
+            break;
+        }
+    }
 
+    actualizarContador();
+    mostrarTareas();
 }
 
 function marcarUrgente(id) {
+    for (let i = 0; i < tareas.length; i++) {
+        if (tareas[i].id === id) {
+            if (tareas[i].urgente === false) {
+                tareas[i].urgente = true;
+                console.log("Tarea marcada como urgente:", tareas[i]);
+            } else {
+                tareas[i].urgente = false;
+                console.log("Tarea desmarcada como urgente:", tareas[i]);
+            }
+            break;
+        }
+    }
 
+    actualizarContador();
+    mostrarTareas();
 }
 
 function eliminarTarea(id) {
@@ -125,6 +167,49 @@ function eliminarTarea(id) {
             break;
         }
     }
+
+    actualizarContador();
+    mostrarTareas();
+}
+
+btnLimpiar.addEventListener("click", limpiarCompletadas);
+
+function limpiarCompletadas() {
+    let cantidadCompletadas = 0;
+
+    for (let i = 0; i < tareas.length; i++) {
+        if (tareas[i].hecha) {
+            cantidadCompletadas++;
+        }
+    }
+
+    if (cantidadCompletadas === 0) {
+        console.log("No hay tareas completadas para eliminar.");
+        return;
+    }
+
+    const confirmarLimpieza = confirm(
+        `Se eliminarán ${cantidadCompletadas} tarea(s) completada(s). ¿Deseas continuar?`
+    );
+
+    if (!confirmarLimpieza) {
+        console.log("El usuario canceló limpiar completadas.");
+        return;
+    }
+
+    let tareasPendientes = [];
+
+    for (let i = 0; i < tareas.length; i++) {
+        if (!tareas[i].hecha) {
+            tareasPendientes.push(tareas[i]);
+        }
+    }
+
+    tareas = tareasPendientes;
+    total = tareas.length;
+    completadas = 0;
+
+    console.log("Se limpiaron las tareas completadas.");
 
     actualizarContador();
     mostrarTareas();

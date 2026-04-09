@@ -19,7 +19,7 @@ body {
     width: 100%;
     max-width: 700px;
     padding: 25px;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
@@ -36,7 +36,9 @@ h1 {
     margin-bottom: 20px;
 }
 
-input, select, button {
+input,
+select,
+button {
     padding: 10px;
     border: 1px solid #bbb;
     border-radius: 8px;
@@ -45,9 +47,13 @@ input, select, button {
 
 button {
     cursor: pointer;
-    border: none;
-    background-color: #333;
-    color: white;
+    border: 1px solid #000000;
+    background-color: #fafafa;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
 }
 
 #agregarTarea {
@@ -55,7 +61,7 @@ button {
 }
 
 #btnLimpiar {
-    background-color: #3A58BD;
+    background-color: #7994eb;
 }
 
 button:hover {
@@ -80,8 +86,50 @@ button:hover {
 }
 
 .tarea {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 12px;
-  background-color: #fafafa;
+    border: 1px solid #000000;
+    background-color: #fafafa;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.tarea p {
+  margin: 0;
+  flex: 1;
+  text-align: left;
+}
+
+.botonesTarea {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.hecha {
+    border: 1px solid #208339;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    background-color: #b7ebbb;
+}
+
+.hecha p {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.urgente {
+    border: 2px solid red;
+    background-color: #ffe5e5;
+}
+
+.botonesTarea {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
